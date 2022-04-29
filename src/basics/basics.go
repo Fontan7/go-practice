@@ -1,11 +1,10 @@
 package basics
 
 import (
-	"sort"
-	"time"
 	"fmt"
 	"log"
 	"math"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -52,14 +51,14 @@ func Examples(){
 	cateto1 := 12
 	cateto2 := 26
 
-	areaTrianguloRectangulo := areaTrianguloR(cateto1, cateto2)
+	areaTrianguloRectangulo := areaTrianguleR(cateto1, cateto2)
 	fmt.Println("Area triangulo rectangulo:", areaTrianguloRectangulo)
 
 	// Area circulo
 	var diametro float64 = 25
 	var radio float64 = diametro/2
 
-	areaCirculo := areaCirculo( radio, diametro)
+	areaCirculo := areaCircle( radio, diametro)
 	fmt.Println("Area circulo:", areaCirculo)
 
 	// Area trapecio
@@ -71,13 +70,13 @@ func Examples(){
 	println("Area trapecio:", areaTrapecio)
 }
 
-func areaTrianguloR(c1, c2 int) int{
+func areaTrianguleR(c1, c2 int) int{
 	var area int = (c1 * c2) / 2
 
 	return area
 }
 
-func areaCirculo(r, d float64) float64{
+func areaCircle(r, d float64) float64{
 	var pi float64 = 3.14159
 	if r > 0 {
 
@@ -240,25 +239,6 @@ func (myCar *Car) ChangeBrand(brand string){
 	fmt.Println("The brand has changed to: " + myCar.Brand)
 }
 
-func fizzBuzz(n int32) {
-    // Write your code here
-    var i int32
-    for i=1; i <= n; i++{
-        
-		var output string
-
-     	if i%3 == 0 && i%5 != 0{
-            output += "Fizz"
-        }else if i%3 != 0 && i%5 == 0{
-            output += "Buzz"
-        } else {
-			output = string(i)
-		}
-
-		fmt.Println(output)
-	}
-}
-
 func removeNegatives(A []int) []int{
 
 	slice := make([]int, 0)
@@ -280,9 +260,8 @@ func removeNegatives(A []int) []int{
 
 func Solution(A []int) int {
 
-    aSlice := A[:]  
-    sort.Ints(aSlice)
-	positives := removeNegatives(aSlice)
+    sort.Ints(A)
+	positives := removeNegatives(A)
 
 	last := 0
 	
@@ -296,65 +275,6 @@ func Solution(A []int) int {
 		last = value
 
 	}
+
 	return last+1
-}
-
-
-//Print the ratios of positive, negative and zero values in the array.
-// Each value should be printed on a separate line with  digits after the decimal. 
-//The function should not return a value.
-func plusMinus(a []int32) {
-    
-    base := float32(len(a))
-    var pos, neg, z float32
-    
-    for _, n := range a{
-        if n > 0{
-            pos += 1
-        } else if n < 0{
-            neg += 1
-        } else{
-            z += 1
-        }
-    }
-    
-    pos = pos/base
-    neg = neg/base
-    z = z/base
-    
-    fmt.Printf("%.6f",pos)
-    fmt.Println()
-    fmt.Printf("%.6f",neg)
-    fmt.Println()
-    fmt.Printf("%.6f",z)
-}
-
-//Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers.
-// Then print the respective minimum and maximum values as a single line of two space-separated long integers.
-func miniMaxSum(a []int) {
-    
-    sort.Ints(a)
-    var min int
-    var max int
-    
-    for _, v := range a{
-        
-		min += v
-		max += v
-       
-    }
-    
-    min = min - a[len(a)-1]
-	max = max - a[0]
-    fmt.Println(min, max)
-}
-
-
-//Convert time from PM to military
-func timeConversion(s string) string {
-    
-    dt,_ := time.Parse("03:04:05PM", s)
-    military := dt.Format("15:04:05")
-    
-    return military
 }
