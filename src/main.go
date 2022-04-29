@@ -50,4 +50,10 @@ func main (){
 	a := []int{1,2,3}
 	num := basics.Solution(a)
 	fmt.Println(num)
+
+
+
+	f := []int{0,0,1,1,2}
+	n := basics.Lonelyinteger(f)
+	fmt.Println(n)
 }
